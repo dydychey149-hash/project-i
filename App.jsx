@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import ListBar from "./components/navbar.jsx";
 import Portfolio from "./components/portfolio.jsx";
 import Main from "./components/mains.jsx";
@@ -45,8 +45,10 @@ function ScrollRevealObserver() {
     return null;
 }
 function App() {
+    const Router = import.meta.env.PROD ? HashRouter : BrowserRouter;
+
     return (
-        <BrowserRouter basename={import.meta.env.PROD ? import.meta.env.BASE_URL : "/"}>
+        <Router>
             <ScrollRevealObserver />
             <ListBar />
             <Routes>
@@ -63,7 +65,7 @@ function App() {
                 <Route path="/product" element={<AllDrinks />} />
             </Routes>
             <Footer />
-        </BrowserRouter>
+        </Router>
     );
 }
 export default App;
