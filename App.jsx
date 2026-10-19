@@ -46,7 +46,7 @@ function ScrollRevealObserver() {
 }
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.PROD ? import.meta.env.BASE_URL : "/"}>
             <ScrollRevealObserver />
             <ListBar />
             <Routes>
